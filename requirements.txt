@@ -10,3 +10,4 @@ pip            9.0.3
 setuptools     39.0.1
 Werkzeug       0.14.1
 wheel          0.30.0
+pytest         7.2.1
