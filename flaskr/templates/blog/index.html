@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block header %}
 <h1>{% block title %}Posts{% endblock %}</h1>
 {% if g.user %}
@@ -12,18 +11,31 @@
 <article class="post">
     <header>
         <div>
-            <h1>{{ post['title'] }}</h1>
-            <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+            <button type="button" class="toggle_btn">
+                <h1>{{ post['title'] }}</h1>
+                <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}
+                    <span id="post_id">{{post['id']}}</span>
+                </div>
+            </button>
+            <p class="text_body" id="{{post['id']}}">{{ post['body'] }}</p>
+            <div class="post-action">
+                <button type="button" class="like" id="like"><span id="like_count">0</span><i id="like_button"
+                        class="fa-regular fa-thumbs-up"></i></button>(<span
+                    id="total_like">{{post['count_like']}}</span>) 
+                <span> | </span>
+                <button type="button" class="unlike" id="unlike"><span id="unlike_count">0</span><i id="unlike_button"
+                        class="fa-regular fa-thumbs-down"></i></button> (<span
+                    id="total_unlike">{{post['count_unlike']}}</span>)
+            </div>
         </div>
         {% if g.user['id'] == post['author_id'] %}
         <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
         {% endif %}
     </header>
-    <p class="body">{{ post['body'] }}</p>
+
 </article>
 {% if not loop.last %}
 <hr>
 {% endif %}
 {% endfor %}
 {% endblock %}
-

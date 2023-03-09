@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS post;
-
+DROP TABLE IF EXISTS rate;
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
@@ -13,5 +13,15 @@ CREATE TABLE post (
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   title TEXT NOT NULL,
   body TEXT NOT NULL,
-  FOREIGN KEY (author_id) REFERENCES user (id)
+  count_like INTEGER,
+  count_unlike INTEGER
+  FOREIGN KEY (author_id) REFERENCES user(id)
+);
+CREATE TABLE rate (
+  author_id INTEGER NOT NULL,
+  post_id INTEGER NOT NULL FOREIGN KEY REFERENCES post(id),
+  liked INTEGER NOT NULL,
+  unliked INTEGER NOT NULL,
+  FOREIGN KEY (author_id) REFERENCES user(id),
+  FOREIGN KEY (post_id) REFERENCES post(id)
 );

@@ -1,5 +1,5 @@
 html {
-    font-family: sans-serif;
+    font-family: sans-serif !important;
     background: #eee;
     padding: 1rem;
 }
@@ -91,6 +91,21 @@ header .action {
 .post>header h1 {
     font-size: 1.5em;
     margin-bottom: 0;
+
+}
+
+.toggle_btn {
+    border: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: start;
+}
+
+.text_body {
+    display: none;
+
 }
 
 .post .about {
@@ -134,4 +149,24 @@ input.danger {
 input[type=submit] {
     align-self: start;
     min-width: 10em;
+}
+
+.like,
+.unlike {
+    border: none;
+    font-size: medium;
+    background-color: white;
+}
+
+.like:hover,
+.unlike:hover {
+    cursor: pointer;
+}
+
+#like_count, #unlike_count, #post_id{
+    color: white;
+    font-size: xx-small;
+}
+.fa-thumbs-up, .fa-thumbs-down {
+    color: #377ba8;
 }
